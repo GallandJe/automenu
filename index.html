@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Menu dynamique</title>
+        <meta charset="utf8">
+        <style>
+            nav{
+                float: left;
+                width: 250px;
+            }
+            main{
+                padding-left: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <ul id="menu">
+
+            </ul>
+        </nav>
+        <main>
+            <h1>Ma super page</h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo inventore, deleniti, nostrum ab fugiat nam debitis ut labore odio quia sed vitae? Alias, inventore quos. Deserunt porro sed quia fugit.</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo inventore, deleniti, nostrum ab fugiat nam debitis ut labore odio quia sed vitae? Alias, inventore quos. Deserunt porro sed quia fugit.</p>
+            <h2>A propos</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores odit possimus soluta reiciendis quam, suscipit voluptatum fugit aperiam, veniam vitae praesentium vel accusamus. Optio, minima saepe accusantium dolorem eum quis!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores odit possimus soluta reiciendis quam, suscipit voluptatum fugit aperiam, veniam vitae praesentium vel accusamus. Optio, minima saepe accusantium dolorem eum quis!</p>
+            <h2>Notre engagement</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores iusto officia fuga error nostrum mollitia temporibus quisquam. Neque, harum cum eos quisquam itaque nulla voluptas illo, nesciunt accusamus inventore ea?</p>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores iusto officia fuga error nostrum mollitia temporibus quisquam. Neque, harum cum eos quisquam itaque nulla voluptas illo, nesciunt accusamus inventore ea?</p>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores iusto officia fuga error nostrum mollitia temporibus quisquam. Neque, harum cum eos quisquam itaque nulla voluptas illo, nesciunt accusamus inventore ea?</p>
+            <h2>En savoir plus</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium architecto saepe asperiores quia eius nesciunt temporibus consectetur atque nisi tenetur.</p>
+        </main>
+        <script type="text/javascript">
+            elements = document.getElementsByTagName("h2");
+            menu = document.getElementById("menu");
+            for(i=0; i < elements.length; i++){
+                // Slug
+                var slug = slugify(elements[i].textContent);
+                // Add id for anchor
+                elements[i].id = slug;
+                // Add to menu
+                var tag = document.createElement("li");
+                var anchor = document.createElement("a");
+                anchor.href = "#"+slug;
+                var content = document.createTextNode(elements[i].textContent)
+                anchor.appendChild(content);
+                tag.appendChild(anchor);
+                menu.appendChild(tag);
+            }
+
+            // https://gist.github.com/mathewbyrne/1280286
+            function slugify(text)
+            {
+                return text.toString().toLowerCase()
+                    .replace(/\s+/g, '-')           // Replace spaces with -
+                    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+                    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                    .replace(/^-+/, '')             // Trim - from start of text
+                    .replace(/-+$/, '');            // Trim - from end of text
+            }
+        </script>
+    </body>
+</html>
